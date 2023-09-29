@@ -81,7 +81,7 @@ export default function SignIn() {
           },
         });
 
-        if (response.ok) {
+        if (response.bearer_id) {
           // Authentication is successful. Handle the response as needed.
           const data = await response.json();
 
