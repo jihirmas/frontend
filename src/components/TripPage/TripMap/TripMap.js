@@ -23,7 +23,6 @@ const TripMap = ({ tripId }) => {
         // Hacer una solicitud para obtener los destinos asociados al viaje
         const response = await fetch(`${url}/api/v1/trip_destinations?trip_id=${tripId}`, {
           method: 'GET',
-          mode: 'no-cors',
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
           },

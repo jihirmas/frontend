@@ -33,7 +33,6 @@ function TripsPage(props) {
         }
         const response = await fetch(`${url}/api/v1/trips`, {
           method: 'GET',
-          mode: 'no-cors',
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
           },

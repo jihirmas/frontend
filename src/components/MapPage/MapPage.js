@@ -39,7 +39,6 @@ const MapPage = () => {
     try {
       const response = await fetch(`${url}/api/v1/trips`, {
         method: 'GET',
-        mode: 'no-cors',
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
         },
@@ -78,7 +77,7 @@ const MapPage = () => {
         url = 'http://localhost:3000';
       }
       const destinationResponse = await axios.post(`${url}/api/v1/destinations`, { destination: destinationData }, {
-        mode: 'no-cors',
+         
         headers: {
           Authorization: `Bearer ${authToken}`, // Agregar encabezado de autenticación Bearer
         },
@@ -90,7 +89,7 @@ const MapPage = () => {
         trip_id: tripId,
         destination_id: createdDestination.id,
       }, {
-        mode: 'no-cors',
+         
         headers: {
           Authorization: `Bearer ${authToken}`, // Agregar encabezado de autenticación Bearer
         },

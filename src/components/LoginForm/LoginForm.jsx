@@ -69,11 +69,12 @@ export default function SignIn() {
       else {
         url = 'http://localhost:3000';
       }
+    console.log(url);
     if (isFormValid) {
       // Form is valid; you can proceed with form submission.
       try {
         // Send a GET request with HTTP Basic Authentication.
-        const response = await fetch('https://backend-production-ddd7.up.railway.app/api/v1/api-keys', {
+        const response = await fetch(`${url}/api/v1/api-keys`, {
           method: 'POST',
           headers: {
             'Authorization': 'Basic ' + btoa(email + ':' + password),

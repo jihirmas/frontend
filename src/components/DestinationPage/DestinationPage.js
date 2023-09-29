@@ -20,7 +20,6 @@ const DestinationPage = () => {
       try {
         const response = await fetch(`${url}/api/v1/destinations/${destinationId}`, {
           method: 'GET',
-          mode: 'no-cors',
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
           },
