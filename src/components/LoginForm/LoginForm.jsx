@@ -80,7 +80,7 @@ export default function SignIn() {
             'Authorization': 'Basic ' + btoa(email + ':' + password),
           },
         });
-
+        console.log(response);
         if (response.bearer_id) {
           // Authentication is successful. Handle the response as needed.
           const data = await response.json();
