@@ -75,7 +75,6 @@ export default function SignIn() {
         // Send a GET request with HTTP Basic Authentication.
         const response = await fetch('https://backend-production-ddd7.up.railway.app/api/v1/api-keys', {
           method: 'POST',
-          mode: 'no-cors',
           headers: {
             'Authorization': 'Basic ' + btoa(email + ':' + password),
           },
