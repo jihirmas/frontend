@@ -61,9 +61,10 @@ export default function SignIn() {
     } else {
       setPasswordError('');
     }
+    console.log(process.env.REACT_APP_VERCEL_URL)
     let url = '';
-      if (process.env.VERCEL_URL) {
-        url = 'https://' + process.env.VERCEL_URL;
+      if (process.env.REACT_APP_VERCEL_URL) {
+        url = 'https://' + process.env.REACT_APP_VERCEL_URL;
       }
       else {
         url = 'http://localhost:3000';

@@ -17,10 +17,15 @@ function TopNav(props) {
   const handleLogin = () => {
     window.location.href = "/#/login";
   }
-
-
+  let url = '';
+  if (process.env.REACT_APP_VERCEL_URL) {
+    url = 'https://' + process.env.REACT_APP_VERCEL_URL;
+  }
+  else {
+    url = 'http://localhost:3000';
+  }
   const handleLogout = async () => {
-    let url = 'http://localhost:3000/api/v1/api-keys/'+localStorage.getItem('api_id');
+    let url = `${url}/api/v1/api-keys/`+localStorage.getItem('api_id');
    
     const response = await fetch(url, {
           method: 'DELETE',

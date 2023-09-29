@@ -29,8 +29,15 @@ const MapPage = () => {
   }, []); // Asegura que solo se llama una vez al montar el componente
 
   async function fetchData() {
+    let url;
+    if (process.env.REACT_APP_VERCEL_URL) {
+      url = 'https://' + process.env.REACT_APP_VERCEL_URL;
+    }
+    else {
+      url = 'http://localhost:3000';
+    }
     try {
-      const response = await fetch('http://localhost:3000/api/v1/trips', {
+      const response = await fetch(`${url}/api/v1/trips`, {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
@@ -62,8 +69,14 @@ const MapPage = () => {
     // try {
       // Paso 1: Crear el destino
       const authToken = localStorage.getItem('authToken');
-      
-      const destinationResponse = await axios.post('http://127.0.0.1:3000/api/v1/destinations', { destination: destinationData }, {
+      let url;
+      if (process.env.REACT_APP_VERCEL_URL) {
+        url = 'https://' + process.env.REACT_APP_VERCEL_URL;
+      }
+      else {
+        url = 'http://localhost:3000';
+      }
+      const destinationResponse = await axios.post(`${url}/api/v1/destinations`, { destination: destinationData }, {
         headers: {
           Authorization: `Bearer ${authToken}`, // Agregar encabezado de autenticación Bearer
         },
@@ -71,7 +84,7 @@ const MapPage = () => {
       const createdDestination = destinationResponse.data;
   
       // Paso 2: Asociar el destino al viaje a través de la tabla de unión
-      await axios.post('http://127.0.0.1:3000/api/v1/trip_destinations', {
+      await axios.post(`${url}/api/v1/trip_destinations`, {
         trip_id: tripId,
         destination_id: createdDestination.id,
       }, {

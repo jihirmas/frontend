@@ -17,7 +17,14 @@ function TripPage(props) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`http://127.0.0.1:3000/api/v1/trip_destinations?trip_id=${tripId}`, {
+        let url;
+        if (process.env.REACT_APP_VERCEL_URL) {
+          url = 'https://' + process.env.REACT_APP_VERCEL_URL;
+        }
+        else {
+          url = 'http://localhost:3000';
+        }
+        const response = await fetch(`${url}/api/v1/trip_destinations?trip_id=${tripId}`, {
           method: 'GET',
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
@@ -42,7 +49,14 @@ function TripPage(props) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`http://localhost:3000/api/v1/trips/${tripId}/posts`, {
+        let url;
+        if (process.env.REACT_APP_VERCEL_URL) {
+          url = 'https://' + process.env.REACT_APP_VERCEL_URL;
+        }
+        else {
+          url = 'http://localhost:3000';
+        }
+        const response = await fetch(`${url}/api/v1/trips/${tripId}/posts`, {
           method: 'GET',
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('authToken'),

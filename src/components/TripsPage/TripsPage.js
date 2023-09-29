@@ -24,7 +24,14 @@ function TripsPage(props) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('http://localhost:3000/api/v1/trips', {
+        let url;
+        if (process.env.REACT_APP_VERCEL_URL) {
+          url = 'https://' + process.env.REACT_APP_VERCEL_URL;
+        }
+        else {
+          url = 'http://localhost:3000';
+        }
+        const response = await fetch(`${url}/api/v1/trips`, {
           method: 'GET',
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('authToken'),

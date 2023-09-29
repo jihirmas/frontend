@@ -12,9 +12,16 @@ const TripMap = ({ tripId }) => {
 
   useEffect(() => {
     async function fetchData() {
+      let url;
+        if (process.env.REACT_APP_VERCEL_URL) {
+          url = 'https://' + process.env.REACT_APP_VERCEL_URL;
+        }
+        else {
+          url = 'http://localhost:3000';
+        }
       try {
         // Hacer una solicitud para obtener los destinos asociados al viaje
-        const response = await fetch(`http://127.0.0.1:3000/api/v1/trip_destinations?trip_id=${tripId}`, {
+        const response = await fetch(`${url}/api/v1/trip_destinations?trip_id=${tripId}`, {
           method: 'GET',
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
