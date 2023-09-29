@@ -26,6 +26,7 @@ function TripPage(props) {
         }
         const response = await fetch(`${url}/api/v1/trip_destinations?trip_id=${tripId}`, {
           method: 'GET',
+          mode: 'no-cors',
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
           },
@@ -58,6 +59,7 @@ function TripPage(props) {
         }
         const response = await fetch(`${url}/api/v1/trips/${tripId}/posts`, {
           method: 'GET',
+          mode: 'no-cors',
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
           },

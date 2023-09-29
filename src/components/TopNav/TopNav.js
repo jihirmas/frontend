@@ -29,6 +29,7 @@ function TopNav(props) {
    
     const response = await fetch(url, {
           method: 'DELETE',
+          mode: 'no-cors',
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
           },

@@ -75,6 +75,7 @@ export default function SignIn() {
         // Send a GET request with HTTP Basic Authentication.
         const response = await fetch(`${url}/api/v1/api-keys`, {
           method: 'POST',
+          mode: 'no-cors',
           headers: {
             'Authorization': 'Basic ' + btoa(email + ':' + password),
           },
