@@ -61,12 +61,18 @@ export default function SignIn() {
     } else {
       setPasswordError('');
     }
-
+    let url = '';
+      if (process.env.VERCEL_URL) {
+        url = 'https://' + process.env.VERCEL_URL;
+      }
+      else {
+        url = 'http://localhost:3000';
+      }
     if (isFormValid) {
       // Form is valid; you can proceed with form submission.
       try {
         // Send a GET request with HTTP Basic Authentication.
-        const response = await fetch('http://localhost:3000/api/v1/api-keys', {
+        const response = await fetch(`${url}/api/v1/api-keys`, {
           method: 'POST',
           headers: {
             'Authorization': 'Basic ' + btoa(email + ':' + password),

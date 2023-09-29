@@ -6,12 +6,19 @@ import { useParams } from 'react-router-dom'; // Importa useParams
 const DestinationPage = () => {
   const { destinationId } = useParams(); // Obtiene el destinationId de la URL
   const [destination, setDestination] = useState({});
+  let url = '';
+  if (process.env.VERCEL_URL) {
+    url = 'https://' + process.env.VERCEL_URL;
+  }
+  else {
+    url = 'http://localhost:3000';
+  }
 
   useEffect(() => {
     // Hacer una solicitud a tu API para obtener los datos del destino según el destinationId
     async function fetchDestination() {
       try {
-        const response = await fetch(`http://localhost:3000/api/v1/destinations/${destinationId}`, {
+        const response = await fetch(`${url}/api/v1/destinations/${destinationId}`, {
           method: 'GET',
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
