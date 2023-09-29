@@ -73,7 +73,7 @@ export default function SignIn() {
       // Form is valid; you can proceed with form submission.
       try {
         // Send a GET request with HTTP Basic Authentication.
-        const response = await fetch(`${url}/api/v1/api-keys`, {
+        const response = await fetch('https://backend-production-ddd7.up.railway.app/api/v1/api-keys', {
           method: 'POST',
           mode: 'no-cors',
           headers: {
