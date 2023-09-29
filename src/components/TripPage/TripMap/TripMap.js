@@ -13,8 +13,8 @@ const TripMap = ({ tripId }) => {
   useEffect(() => {
     async function fetchData() {
       let url;
-        if (process.env.REACT_APP_VERCEL_URL) {
-          url = 'https://' + process.env.REACT_APP_VERCEL_URL;
+        if (process.env.REACT_APP_BACKEND_URL) {
+          url = 'https://' + process.env.REACT_APP_BACKEND_URL;
         }
         else {
           url = 'http://localhost:3000';
