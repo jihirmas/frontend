@@ -53,6 +53,7 @@ function FriendsPage(props) {
             });
 
             // Check if the response is successful (status code 200)
+            console.log(userLocation.lat);
             if (response.status === 200) {
                 // Convert the response body to Blob and create a data URL
                 const blob = await response.blob();

@@ -7,7 +7,7 @@ const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 const authToken = localStorage.getItem('authToken');
 
 const MapPage = () => {
-  console.log(apiKey);
+  const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
   const [searchLocation, setSearchLocation] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
