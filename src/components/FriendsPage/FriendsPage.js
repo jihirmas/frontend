@@ -30,8 +30,15 @@ function FriendsPage(props) {
         setIsLoading(true);
 
         try {
+            let url;
+            if (process.env.REACT_APP_BACKEND_URL) {
+            url = 'https://' + process.env.REACT_APP_BACKEND_URL;
+            }
+            else {
+            url = 'http://localhost:3000';
+            }
             // Perform your API fetch here
-            const response = await fetch('http://localhost:3000/api/v1/friendship_tokens/show', {
+            const response = await fetch(`${url}/api/v1/friendship_tokens/show`, {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
