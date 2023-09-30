@@ -93,6 +93,10 @@ function FriendsPage(props) {
         // Get the user's location when the component mounts
         getUserLocation();
     }, []);
+    const css = `
+    div > video {
+        position: relative!important;
+        `;
 
     return (
         <div style={{ padding: '20px', height: '600px', width: '850px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -109,21 +113,28 @@ function FriendsPage(props) {
                 )}
             </div>
 
-            {isScannerOpen && (
-                <div style={{ marginTop: '20px' }}>
-                    <QrReader
-                        delay={300}
-                        onError={handleError}
-                        onScan={handleScan}
-                        style={{ width: '100%' }}
-                    />
-                </div>
-            )}
+            
 
             {!isScannerOpen && (
                 <Button style={{ marginTop: '20px' }} variant='contained' color="secondary" size="small" onClick={() => setIsScannerOpen(true)}>
                     Escanear Amigo
                 </Button>
+            )}
+
+            {isScannerOpen && (
+                <div style={{ marginTop: '20px' }}>
+                    <style>{"\
+                            div>video{\
+                            position:relative!important; top: '-700px'\
+                            }\
+                        "}</style>
+                    <QrReader
+                        delay={300}
+                        onError={handleError}
+                        onScan={handleScan}
+                        style={{ width: '100%' , position: 'relative!important'}}
+                    />
+                </div>
             )}
         </div>
     );
