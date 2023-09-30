@@ -133,7 +133,7 @@ function FriendsPage(props) {
                         onError={handleError}
                         onScan={handleScan}
                         style={{ width: '100%' , position: 'relative!important'}}
-                        facingMode="environment"
+                        constraints={{video: {facingMode: "environment"}}}
                     />
                 </div>
             )}
