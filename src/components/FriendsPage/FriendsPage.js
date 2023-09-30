@@ -125,7 +125,7 @@ function FriendsPage(props) {
                 <div style={{ marginTop: '20px' }}>
                     <style>{"\
                             div>video{\
-                            position:relative!important; top: '-700px';\
+                            position:relative!important; top:-700px!important;\
                             }\
                         "}</style>
                     <QrReader
