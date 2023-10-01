@@ -86,13 +86,6 @@ function FriendsPage(props) {
             const params = new URLSearchParams(query);
             const friend_token = params.get('fndtk');
 
-            // Here, you can use the 'data' variable, which contains the scanned QR code data.
-            console.log("Scanned QR code data:", aux);
-            console.log(JSON.stringify(aux));
-
-            // Send a request via API fetch with the scanned data
-            // You can implement this logic here.
-            // Example: sendFriendRequest(data);
             try {
                 let url;
                 if (process.env.REACT_APP_BACKEND_URL) {
@@ -102,8 +95,7 @@ function FriendsPage(props) {
                 url = 'http://localhost:3000';
                 }
                 // Perform your API fetch here
-                console.log(url);
-                console.log(friend_token);
+                
                 const response = await fetch(`${url}/api/v1/friendship_tokens/add`, {
                     
                     method: 'POST',
@@ -117,7 +109,9 @@ function FriendsPage(props) {
                         'user_id': localStorage.getItem('user_id'),
                     }),
                 });
-                
+                console.log('RESSS')
+                console.log(response);
+                console.log('RESSS')
     
                 // Check if the response is successful (status code 200)
                 
@@ -190,12 +184,8 @@ function FriendsPage(props) {
                             if (!!result) {
                                 setIsScannerOpen(false);
                                 setData(result?.text);
-                                console.log("DATA")
-                                console.log(data);
-                                console.log(result?.text);
                                 const aux = result?.text;
                                 console.log(aux);
-                                console.log("DATA");
                                 handleScan(aux);
                             }
                             if (!!error) {
