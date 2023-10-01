@@ -93,6 +93,8 @@ function FriendsPage(props) {
         // Get the user's location when the component mounts
         getUserLocation();
     }, []);
+
+
     const css = `
     div > video {
         position: relative!important;
@@ -131,7 +133,7 @@ function FriendsPage(props) {
                     <QrReader
                         delay={300}
                         onError={handleError}
-                        onScan={handleScan}
+                        onResult={handleScan}
                         style={{ width: '100%' , position: 'relative!important'}}
                         constraints={{ facingMode: "environment" }}
                     />
