@@ -103,15 +103,17 @@ function FriendsPage(props) {
                     },
                     body: JSON.stringify({
                         'token': friend_token,
+                        'user_id': localStorage.getItem('user_id'),
                     }),
                 });
     
                 // Check if the response is successful (status code 200)
                 
-                if (response.status === 200) {
+                if (response.data.estado === "ok") {
                     window.alert("Friendship added successfully");
                     
                 } else {
+                    window.alert("Hubo un error");
                     console.error("API request failed with status:", response.status);
                 }
             } catch (error) {
