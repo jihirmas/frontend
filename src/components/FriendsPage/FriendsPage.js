@@ -79,21 +79,21 @@ function FriendsPage(props) {
         console.log("AAAAAAAAAA")
         console.log(aux);
         console.log("AAAAAAAAAA")
-        if (data) {
+        if (aux) {
             // Close the scanner and handle the scanned data (e.g., send a request via API fetch)
             setIsScannerOpen(false);
-            const [url, query] = data.split('?');
+            const [url, query] = aux.split('?');
             const params = new URLSearchParams(query);
             const friend_token = params.get('fndtk');
 
             // Here, you can use the 'data' variable, which contains the scanned QR code data.
-            console.log("Scanned QR code data:", data);
-            console.log(JSON.stringify(data));
+            console.log("Scanned QR code data:", aux);
+            console.log(JSON.stringify(aux));
 
             // Send a request via API fetch with the scanned data
             // You can implement this logic here.
             // Example: sendFriendRequest(data);
-            /*try {
+            try {
                 let url;
                 if (process.env.REACT_APP_BACKEND_URL) {
                 url = 'https://' + process.env.REACT_APP_BACKEND_URL;
@@ -131,7 +131,7 @@ function FriendsPage(props) {
             } catch (error) {
                 // Handle any errors that occurred during the fetch
                 console.error("Error fetching data:", error);
-            }*/
+            }
         }
     };
 
