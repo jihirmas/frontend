@@ -187,6 +187,7 @@ function FriendsPage(props) {
                         onError={handleError}
                         onResult={(result, error) => {
                             if (!!result) {
+                                setIsScannerOpen(false);
                                 setData(result?.text);
                                 console.log("DATA")
                                 console.log(data);
