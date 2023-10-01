@@ -3,6 +3,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { QrReader } from 'react-qr-reader';
 import SpinnerOfDoom from "../HomePage/SpinnerOfDoom";
 import { json } from 'react-router';
+import jsQR from 'jsqr';
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -73,6 +74,7 @@ function FriendsPage(props) {
 
     // Function to handle the scanning of the QR code
     const handleScan = async (data) => {
+        console.log(data);
         if (data) {
             // Close the scanner and handle the scanned data (e.g., send a request via API fetch)
             setIsScannerOpen(false);
@@ -143,14 +145,27 @@ function FriendsPage(props) {
         if (file) {
           const reader = new FileReader();
           reader.onloadend = () => {
-            // Use the FileReader result to handle the QR code data
-            const result = reader.result;
-            console.log(result);
-            handleScan(result);
+            // Use jsQR to process the image and get QR code data
+            const imageData = new ImageData(
+              new Uint8ClampedArray(reader.result),
+              file.width,
+              file.height
+            );
+    
+            const code = jsQR(imageData.data, imageData.width, imageData.height);
+            
+            if (code) {
+              // Handle the QR code data from the uploaded file
+              console.log("QR code data:", code.data);
+            } else {
+              // Handle case where no QR code is found
+              console.log('No QR code found in the image.');
+            }
           };
-          reader.readAsDataURL(file);
+          reader.readAsArrayBuffer(file);
         }
       };
+    
     
 
 

@@ -20,6 +20,7 @@
     "google-map-react": "^2.2.1",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
+    "jsqr": "^1.4.0",
     "material-ui-animated-fab": "^1.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
