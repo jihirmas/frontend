@@ -107,8 +107,7 @@ function FriendsPage(props) {
                         'user_id': localStorage.getItem('user_id'),
                     }),
                 });
-                console.log("gholasdas");
-                console.log(response);
+                
     
                 // Check if the response is successful (status code 200)
                 
