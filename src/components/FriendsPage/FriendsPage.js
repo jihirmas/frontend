@@ -71,10 +71,13 @@ function FriendsPage(props) {
     };
 
     // Function to handle the scanning of the QR code
-    const handleScan = (data) => {
+    const handleScan = async (data) => {
         if (data) {
             // Close the scanner and handle the scanned data (e.g., send a request via API fetch)
             setIsScannerOpen(false);
+            const [url, query] = data.split('?');
+            const params = new URLSearchParams(query);
+            const friend_token = params.get('fndtk');
 
             // Here, you can use the 'data' variable, which contains the scanned QR code data.
             console.log("Scanned QR code data:", data);
@@ -82,6 +85,39 @@ function FriendsPage(props) {
             // Send a request via API fetch with the scanned data
             // You can implement this logic here.
             // Example: sendFriendRequest(data);
+            try {
+                let url;
+                if (process.env.REACT_APP_BACKEND_URL) {
+                url = 'https://' + process.env.REACT_APP_BACKEND_URL;
+                }
+                else {
+                url = 'http://localhost:3000';
+                }
+                // Perform your API fetch here
+                const response = await fetch(`${url}/api/v1/friendship_tokens/add`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'token': friend_token,
+                    }),
+                });
+    
+                // Check if the response is successful (status code 200)
+                
+                if (response.status === 200) {
+                    window.alert("Friendship added successfully");
+                    
+                } else {
+                    console.error("API request failed with status:", response.status);
+                }
+            } catch (error) {
+                // Handle any errors that occurred during the fetch
+                console.error("Error fetching data:", error);
+            }
         }
     };
 
