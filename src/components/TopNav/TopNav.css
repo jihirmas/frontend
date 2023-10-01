@@ -1,7 +1,7 @@
 .Container{
                       display: flex;
                       flex-direction: column;
-    height: 85px;
+    height: 85px;margin-bottom: 100px;
 
                   }
 
@@ -12,10 +12,9 @@
                  background-color: rgba(162, 250, 163, 0.9);
                  flex-direction: column;
                  display: flex;
-                 position: fixed;
-                    top: 0;
-                    left: 0;
-    z-index: 1100;
+                 
+                z-index: 1100;
+                
              }
 
 

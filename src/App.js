@@ -16,6 +16,7 @@ import SearchPage from "./components/SearchPage/SearchPage";
 import LoginForm from "./components/LoginForm/LoginForm";
 import TripPage from './components/TripPage/TripPage';
 import DestinationPage from './components/DestinationPage/DestinationPage';
+import ProfilePage from './components/ProfilePage/ProfilePage';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 
@@ -35,6 +36,7 @@ function App() {
                         <Route path="/search" element={<SearchPage />} />
                         <Route path="/trip/:tripId" element={<TripPage />} />
                         <Route path='/destination/:destinationId' element={<DestinationPage />}/>
+                        <Route path='/profile/:profileId' element={<ProfilePage />}/>
                     </Routes>
                 </div>
                 <BottomBar />

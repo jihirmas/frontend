@@ -14,20 +14,25 @@ function TopNav(props) {
     setAnchorEl(null);
   };
 
+  const handleProfile = () => {
+    window.location.href = "/#/profile/"+localStorage.getItem('user_id');
+  };
+
   const handleLogin = () => {
     window.location.href = "/#/login";
   }
-  let url = '';
-  if (process.env.REACT_APP_BACKEND_URL) {
-    url = 'https://' + process.env.REACT_APP_BACKEND_URL;
-  }
-  else {
-    url = 'http://localhost:3000';
-  }
+  
   const handleLogout = async () => {
-    let url = `${url}/api/v1/api-keys/`+localStorage.getItem('api_id');
+    let url = '';
+    if (process.env.REACT_APP_BACKEND_URL) {
+      url = 'https://' + process.env.REACT_APP_BACKEND_URL;
+    }
+    else {
+      url = 'http://localhost:3000';
+    }
+    let final_url = `${url}/api/v1/api-keys/`+localStorage.getItem('api_id');
    
-    const response = await fetch(url, {
+    const response = await fetch(final_url, {
           method: 'DELETE',
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
@@ -66,7 +71,11 @@ function TopNav(props) {
           }}
 
         >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <span>
+            {isAuthenticated ? 
+            <MenuItem onClick={handleProfile}>Profile</MenuItem> : 
+            <MenuItem></MenuItem>}
+          </span>
           <MenuItem onClick={handleClose}>Settings</MenuItem>
           <span>
             {isAuthenticated ? 

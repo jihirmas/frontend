@@ -148,7 +148,7 @@ function FriendsPage(props) {
 
     return (
         <div style={{ padding: '20px', height: '600px', width: '850px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Button style={{ marginTop: '90px' }} variant='contained' color="primary" size="small" onClick={fetchData}>
+            <Button style={{ marginTop: '0px' }} variant='contained' color="primary" size="small" onClick={fetchData}>
                 Crear Solicitud de Amistad
             </Button>
 
