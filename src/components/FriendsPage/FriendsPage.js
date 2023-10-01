@@ -4,6 +4,7 @@ import { QrReader } from 'react-qr-reader';
 import SpinnerOfDoom from "../HomePage/SpinnerOfDoom";
 import { json } from 'react-router';
 import jsQR from 'jsqr';
+import { isNullableType } from 'graphql';
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -12,7 +13,7 @@ function FriendsPage(props) {
     const [userLocation, setUserLocation] = useState(null);
     const [qrCodeSrc, setQrCodeSrc] = useState(null);
     const [isScannerOpen, setIsScannerOpen] = useState(false); // State to control QR code scanner
-    const [data, setData] = useState(false); // State to store the scanned data
+    const [data, setData] = useState(null); // State to store the scanned data
 
     // Function to get the user's location
     const getUserLocation = () => {
@@ -191,9 +192,11 @@ function FriendsPage(props) {
                                 setData(result?.text);
                                 console.log("DATA")
                                 console.log(data);
-                                console.log(result?.text)
-                                console.log("DATA")
-                                handleScan(result?.text);
+                                console.log(result?.text);
+                                const aux = result?.text;
+                                console.log(aux);
+                                console.log("DATA");
+                                handleScan(aux);
                             }
                             if (!!error) {
                                 console.log("ERROR QR")
