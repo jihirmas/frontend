@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Button, Typography } from "@mui/material";
 import { QrReader } from 'react-qr-reader';
 import SpinnerOfDoom from "../HomePage/SpinnerOfDoom";
+import { json } from 'react-router';
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -81,6 +82,7 @@ function FriendsPage(props) {
 
             // Here, you can use the 'data' variable, which contains the scanned QR code data.
             console.log("Scanned QR code data:", data);
+            console.log(JSON.stringify(data));
 
             // Send a request via API fetch with the scanned data
             // You can implement this logic here.
