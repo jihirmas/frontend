@@ -12,6 +12,7 @@ function FriendsPage(props) {
     const [userLocation, setUserLocation] = useState(null);
     const [qrCodeSrc, setQrCodeSrc] = useState(null);
     const [isScannerOpen, setIsScannerOpen] = useState(false); // State to control QR code scanner
+    const [data, setData] = useState(null); // State to store the scanned data
 
     // Function to get the user's location
     const getUserLocation = () => {
@@ -73,7 +74,7 @@ function FriendsPage(props) {
     };
 
     // Function to handle the scanning of the QR code
-    const handleScan = async (data) => {
+    const handleScan = async () => {
         console.log(data);
         if (data) {
             // Close the scanner and handle the scanned data (e.g., send a request via API fetch)
@@ -140,31 +141,6 @@ function FriendsPage(props) {
         getUserLocation();
     }, []);
 
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            // Use jsQR to process the image and get QR code data
-            const imageData = new ImageData(
-              new Uint8ClampedArray(reader.result),
-              file.width,
-              file.height
-            );
-    
-            const code = jsQR(imageData.data, imageData.width, imageData.height);
-            
-            if (code) {
-              // Handle the QR code data from the uploaded file
-              console.log("QR code data:", code.data);
-            } else {
-              // Handle case where no QR code is found
-              console.log('No QR code found in the image.');
-            }
-          };
-          reader.readAsArrayBuffer(file);
-        }
-      };
     
     
 
@@ -207,19 +183,20 @@ function FriendsPage(props) {
                     <QrReader
                         delay={100}
                         onError={handleError}
-                        onResult={handleScan}
+                        onResult={(result, error) => {
+                            if (!!result) {
+                                setData(result.text);
+                                console.log(result.text);
+                                handleScan(result.text);
+                            }
+                            if (!!error) {
+                                console.error(error);
+                            }
+                        }}
                         style={{ width: '100%' , position: 'relative!important'}}
                         constraints={{ facingMode: "environment" }}
                     />
-                    <div>
-                        <label htmlFor="fileInput">Upload QR Code:</label>
-                        <input
-                        type="file"
-                        id="fileInput"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                        />
-                    </div>
+                
                 </div>
                 
             )}
