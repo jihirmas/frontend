@@ -87,7 +87,7 @@ function FriendsPage(props) {
             // Send a request via API fetch with the scanned data
             // You can implement this logic here.
             // Example: sendFriendRequest(data);
-            try {
+            /*try {
                 let url;
                 if (process.env.REACT_APP_BACKEND_URL) {
                 url = 'https://' + process.env.REACT_APP_BACKEND_URL;
@@ -125,7 +125,7 @@ function FriendsPage(props) {
             } catch (error) {
                 // Handle any errors that occurred during the fetch
                 console.error("Error fetching data:", error);
-            }
+            }*/
         }
     };
 
@@ -137,6 +137,21 @@ function FriendsPage(props) {
         // Get the user's location when the component mounts
         getUserLocation();
     }, []);
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            // Use the FileReader result to handle the QR code data
+            const result = reader.result;
+            console.log(result);
+            handleScan(result);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+    
 
 
     const css = `
@@ -181,7 +196,17 @@ function FriendsPage(props) {
                         style={{ width: '100%' , position: 'relative!important'}}
                         constraints={{ facingMode: "environment" }}
                     />
+                    <div>
+                        <label htmlFor="fileInput">Upload QR Code:</label>
+                        <input
+                        type="file"
+                        id="fileInput"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        />
+                    </div>
                 </div>
+                
             )}
         </div>
     );
