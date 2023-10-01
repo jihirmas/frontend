@@ -75,9 +75,9 @@ function FriendsPage(props) {
     };
 
     // Function to handle the scanning of the QR code
-    const handleScan = async () => {
+    const handleScan = async (aux) => {
         console.log("AAAAAAAAAA")
-        console.log(data);
+        console.log(aux);
         console.log("AAAAAAAAAA")
         if (data) {
             // Close the scanner and handle the scanned data (e.g., send a request via API fetch)
