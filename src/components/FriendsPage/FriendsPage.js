@@ -95,6 +95,7 @@ function FriendsPage(props) {
                 }
                 // Perform your API fetch here
                 const response = await fetch(`${url}/api/v1/friendship_tokens/add`, {
+                    
                     method: 'POST',
                     headers: {
                         'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
@@ -106,6 +107,8 @@ function FriendsPage(props) {
                         'user_id': localStorage.getItem('user_id'),
                     }),
                 });
+                console.log("gholasdas");
+                console.log(response);
     
                 // Check if the response is successful (status code 200)
                 
