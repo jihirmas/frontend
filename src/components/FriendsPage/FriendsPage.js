@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, CircularProgress } from "@mui/material";
 import { QrReader } from 'react-qr-reader';
 import SpinnerOfDoom from "../HomePage/SpinnerOfDoom";
 import { json } from 'react-router';
