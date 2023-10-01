@@ -190,6 +190,7 @@ function FriendsPage(props) {
                                 setData(result?.text);
                                 console.log("DATA")
                                 console.log(data);
+                                console.log(result?.text)
                                 console.log("DATA")
                                 handleScan(result?.text);
                             }
