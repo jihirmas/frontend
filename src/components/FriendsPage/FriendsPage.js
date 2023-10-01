@@ -185,9 +185,9 @@ function FriendsPage(props) {
                         onError={handleError}
                         onResult={(result, error) => {
                             if (!!result) {
-                                setData(result.text);
-                                console.log(result.text);
-                                handleScan(result.text);
+                                setData(result?.text);
+                                console.log(result?.text);
+                                handleScan(result?.text);
                             }
                             if (!!error) {
                                 console.error(error);
