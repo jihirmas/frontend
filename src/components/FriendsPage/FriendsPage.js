@@ -12,7 +12,7 @@ function FriendsPage(props) {
     const [userLocation, setUserLocation] = useState(null);
     const [qrCodeSrc, setQrCodeSrc] = useState(null);
     const [isScannerOpen, setIsScannerOpen] = useState(false); // State to control QR code scanner
-    const [data, setData] = useState(null); // State to store the scanned data
+    const [data, setData] = useState(false); // State to store the scanned data
 
     // Function to get the user's location
     const getUserLocation = () => {
@@ -75,7 +75,9 @@ function FriendsPage(props) {
 
     // Function to handle the scanning of the QR code
     const handleScan = async () => {
+        console.log("AAAAAAAAAA")
         console.log(data);
+        console.log("AAAAAAAAAA")
         if (data) {
             // Close the scanner and handle the scanned data (e.g., send a request via API fetch)
             setIsScannerOpen(false);
@@ -186,11 +188,15 @@ function FriendsPage(props) {
                         onResult={(result, error) => {
                             if (!!result) {
                                 setData(result?.text);
-                                console.log(result?.text);
+                                console.log("DATA")
+                                console.log(data);
+                                console.log("DATA")
                                 handleScan(result?.text);
                             }
                             if (!!error) {
+                                console.log("ERROR QR")
                                 console.error(error);
+                                console.log("ERROR QR")
                             }
                         }}
                         style={{ width: '100%' , position: 'relative!important'}}
