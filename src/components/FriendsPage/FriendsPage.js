@@ -115,7 +115,7 @@ function FriendsPage(props) {
                 // Check if the response is successful (status code 200)
                 setSpinner(false);
                 if (response.status === 200) {
-                    window.alert("Friendship added successfully");
+                    window.alert("You are friends!");
                     
                 } else {
                     window.alert("Hubo un error");
