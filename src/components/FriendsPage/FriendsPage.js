@@ -14,6 +14,7 @@ function FriendsPage(props) {
     const [qrCodeSrc, setQrCodeSrc] = useState(null);
     const [isScannerOpen, setIsScannerOpen] = useState(false); // State to control QR code scanner
     const [data, setData] = useState(null); // State to store the scanned data
+    const [spinner, setSpinner] = useState(false);
 
     // Function to get the user's location
     const getUserLocation = () => {
@@ -76,9 +77,7 @@ function FriendsPage(props) {
 
     // Function to handle the scanning of the QR code
     const handleScan = async (aux) => {
-        console.log("AAAAAAAAAA")
-        console.log(aux);
-        console.log("AAAAAAAAAA")
+        setSpinner(true);
         if (aux) {
             // Close the scanner and handle the scanned data (e.g., send a request via API fetch)
             setIsScannerOpen(false);
@@ -114,7 +113,7 @@ function FriendsPage(props) {
                 console.log('RESSS')
     
                 // Check if the response is successful (status code 200)
-                
+                setSpinner(false);
                 if (response.status === 200) {
                     window.alert("Friendship added successfully");
                     
@@ -161,6 +160,11 @@ function FriendsPage(props) {
                     </div>
                 )}
             </div>
+            {spinner && (
+                <Box sx={{ display: 'flex' }}>
+                <CircularProgress />
+                </Box>
+            )}
 
             
 
