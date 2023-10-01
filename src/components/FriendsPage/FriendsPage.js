@@ -110,12 +110,12 @@ function FriendsPage(props) {
                     }),
                 });
                 console.log('RESSS')
-                console.log(response);
+                console.log(response.json());
                 console.log('RESSS')
     
                 // Check if the response is successful (status code 200)
                 
-                if (response.data.estado === "ok") {
+                if (response.status === 200) {
                     window.alert("Friendship added successfully");
                     
                 } else {
