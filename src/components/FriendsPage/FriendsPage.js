@@ -171,7 +171,7 @@ function FriendsPage(props) {
                             }\
                         "}</style>
                     <QrReader
-                        delay={300}
+                        delay={100}
                         onError={handleError}
                         onResult={handleScan}
                         style={{ width: '100%' , position: 'relative!important'}}
