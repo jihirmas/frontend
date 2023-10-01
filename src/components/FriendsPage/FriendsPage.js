@@ -94,6 +94,8 @@ function FriendsPage(props) {
                 url = 'http://localhost:3000';
                 }
                 // Perform your API fetch here
+                console.log(url);
+                console.log(friend_token);
                 const response = await fetch(`${url}/api/v1/friendship_tokens/add`, {
                     
                     method: 'POST',
