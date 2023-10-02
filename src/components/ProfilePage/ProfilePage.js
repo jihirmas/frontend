@@ -4,6 +4,7 @@ import { withStyles } from "@mui/styles";
 import { Avatar, Typography, Button, CardActions, CardContent, Card, Box } from "@mui/material";
 import './ProfilePage.css'
 import { Height } from "@mui/icons-material";
+import axios from 'axios';
 
 const styles = {
     card: {
@@ -27,61 +28,43 @@ function ProfilePage(props) {
     const [isAvatar, setIsAvatar] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [showInput, setshowInput] = useState(false);
+    const [file, setFile] = useState()
+
+    function handleChange(event) {
+        setFile(event.target.files[0])
+    }
     
     const showInputButton = () => {
         setshowInput(true);
     }
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
+    
 
-        if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-            const base64Image = reader.result;
-            setSelectedImage(base64Image);
-            const aux = base64Image
-            cambiarAvatar(aux);
-        };
-        reader.readAsDataURL(file);
-        }
-    };
-
-    const cambiarAvatar = async (aux) => {
-        try {
-            let url;
+    function handleSubmit(event) {
+        event.preventDefault()
+        let url;
             if (process.env.REACT_APP_BACKEND_URL) {
                 url = 'https://' + process.env.REACT_APP_BACKEND_URL;
             } else {
                 url = 'http://localhost:3000';
             }
- 
-            const response = await fetch(`${url}/api/v1/users/cambiar_avatar`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    'user_id': localStorage.getItem('user_id'),
-                    'avatar': aux,
-                }),
-            });
-    
-            const data = await response.json();
+        const final_url = url + '/api/v1/users/cambiar_avatar'
+        const formData = new FormData();
+        formData.append('avatar', file);
+        formData.append('id', localStorage.getItem('user_id'));
+        const config = {
+          headers: {
+            'content-type': 'multipart/form-data',
+          },
+        };
+        const user_id = localStorage.getItem('user_id');
+        axios.post(final_url, formData, config).then((response) => {
+          console.log(response.data);
+        }).then((response) => {
+            window.location.reload();
+        })
+      };
 
-    
-            if (data.estado === "ok") {
-                console.log("LISTO!");
-                window.location.reload();
-            } else {
-                console.error("API request failed with status:", response.status);
-            }
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    };
 
     const fetchData = async () => {
         try {
@@ -166,8 +149,11 @@ function ProfilePage(props) {
                         Cambiar avatar
                     </Button>
                     {showInput && (
-                        
-                        <input type="file" accept="image/*" onChange={handleImageChange} />
+                        //camnera e imagen
+                        <form onSubmit={handleSubmit}>
+                            <input type="file" onChange={handleChange}/>
+                            <button type="submit">Upload</button>
+                        </form>
                         
                     )}
                     </CardActions>
