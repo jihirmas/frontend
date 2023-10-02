@@ -54,6 +54,7 @@ function ProfilePage(props) {
         formData.append('id', localStorage.getItem('user_id'));
         const config = {
           headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
             'content-type': 'multipart/form-data',
           },
         };
@@ -62,6 +63,7 @@ function ProfilePage(props) {
           console.log(response.data);
         }).then((response) => {
             window.location.reload();
+
         })
       };
 
@@ -115,8 +117,10 @@ function ProfilePage(props) {
         }
     }
 
-    fetchData();
-
+    useEffect(() => {
+        fetchData();
+    }
+    , []);
 
 
 

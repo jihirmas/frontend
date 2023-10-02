@@ -17,25 +17,22 @@ export default function PostCard({post}) {
 
 
     return (
-
-    <Card sx={{ maxWidth: 345 }}>
-    <CardActionArea className='card-complete'>
-    <Stack spacing={1}>
-      <Skeleton variant="rounded" width={800} height={150} animation="wave" />
-    </Stack>
-        <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-            {post?.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-            {post?.body}
-            </Typography>
-
-        </CardContent>
-  
-    
-    </CardActionArea>
-    </Card>
-    
-    );
+        <Link to={`/posts?postid=${post?.id}`}> {/* Reemplaza `/ruta/del/enlace` con la ruta real */}
+          <Card sx={{ maxWidth: 345 }}>
+            <CardActionArea className='card-complete'>
+              <Stack spacing={1}>
+                <Skeleton variant="rounded" width={800} height={150} animation="wave" />
+              </Stack>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {post?.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {post?.body}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Link>
+      );
     }

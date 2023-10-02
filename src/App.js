@@ -17,6 +17,7 @@ import LoginForm from "./components/LoginForm/LoginForm";
 import TripPage from './components/TripPage/TripPage';
 import DestinationPage from './components/DestinationPage/DestinationPage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
+import PostPage from './components/PostPage/PostPage';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 
@@ -37,6 +38,7 @@ function App() {
                         <Route path="/trip/:tripId" element={<TripPage />} />
                         <Route path='/destination/:destinationId' element={<DestinationPage />}/>
                         <Route path='/profile/:profileId' element={<ProfilePage />}/>
+                        <Route path='/posts' element={<PostPage />}/>
                     </Routes>
                 </div>
                 <BottomBar />
