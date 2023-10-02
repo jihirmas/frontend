@@ -270,7 +270,7 @@ const MapPage = () => {
   
 
   return (
-    <div style={{ padding: '20px', width: '850px', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ padding: '20px', width: '100%', display: 'flex', flexDirection: 'column' }}>
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
         <TextField
           label="Search for a place"
